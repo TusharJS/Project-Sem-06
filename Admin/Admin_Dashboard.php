@@ -62,7 +62,7 @@
 			<ul>
 				<li><a href="Admin_Dashboard.php"><em class="fa fa-home"></em> Home</a></li>
 				<li><a href="Add_Society.php"><em class="fa fa fa-home fa fa fa-plus"></em>Add Society</a></li>
-				<li><a href="#widgets"><em class="fa fa fa-user-plus"></em> Add President</a></li>
+				<li><a href="Add_President.php"><em class="fa fa fa-user-plus"></em> Add President</a></li>
 				<li><a href="<?php echo $LogOut; ?>"><em class="fa fa-columns"></em> Logout </a></li>
 
 			</ul>

@@ -1,10 +1,12 @@
 <?php session_start(); 
         include_once 'Connection.php';
+        include_once 'Header.php';
+        include_once 'Footer.php';
 ?>
 <?php 
         $error_email = "";
-        use PHPMailer\PHPMailer\PHPMailer;
-        use PHPMailer\PHPMailer\Exception;
+          use PHPMailer\PHPMailer\PHPMailer;
+          use PHPMailer\PHPMailer\Exception;
 
         if(isset($_REQUEST['submitOTP']))
         {
@@ -35,10 +37,10 @@
                     $mail->Host = 'smtp.gmail.com';
                     $mail->Port = 587;
                     $mail->SMTPAuth = true;
-                    $mail->Username = '18bmiit042@gmail.com';
-                    $mail->Password = 'tushar#1711';
+                    $mail->Username = 'contact.mysociety@gmail.com';
+                    $mail->Password = 'bmiit4270';
                     $mail->SMTPSecure = 'tls';
-                    $mail->setFrom('18bmiit042@gmail.com');
+                    $mail->setFrom('contact.mysociety@gmail.com');
                     $mail->addAddress($email);
                     $mail->Subject = 'MySociety - Forgot Password';
                     $message_body = "Hi! Your OTP is ".$_SESSION['otp'];
@@ -69,7 +71,7 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
-  <link href="logincss.css" rel="stylesheet">
+  <link href="css/logincss.css" rel="stylesheet">
 </head>
 <body>
 

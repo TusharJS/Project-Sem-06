@@ -26,6 +26,10 @@
     #user{
         margin-top:-45px;
     }
+
+    body {
+      background-color: #f7f2dfe7;
+    }
     </style>
 </head>
 <body>

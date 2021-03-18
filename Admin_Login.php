@@ -34,10 +34,13 @@
             $_SESSION['uimg'] = $rows['image'];
             // $_SESSION['wing'] = $rows['wing'];
 
+            // echo "<script>alert(".$_SESSION['mid'].");</script>";
+            // echo "<script>alert('vashfh');</script>";
+            
             header("location:Admin/Admin_Dashboard.php");
            
           }
-          }
+        }
   ?>
   <form id="lgForm" action="" method="POST">
     <h1><b style="color:#35cebe;">ADMIN LOGIN</b></h1>

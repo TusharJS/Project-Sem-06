@@ -54,12 +54,12 @@
 			<ul>
 				<li><a href="<?php echo $PreDash; ?>"><em class="fa fa-home"></em> Home</a></li>
 				<li><a href="<?php echo $AddMember; ?>"><em class="fa fa-user-plus"></em>Add Member</a></li>
-				<li><a href="#widgets"><em class="fa fa fa-clone"></em> Widgets</a></li>
-				<li><a href="#forms"><em class="fa fa-pencil-square-o"></em> Forms</a></li>
-				<li><a href="#alerts"><em class="fa fa-warning"></em> Alerts</a></li>
-				<li><a href="#buttons"><em class="fa fa-hand-o-up"></em> Buttons</a></li>
-				<li><a href="#tables"><em class="fa fa-table"></em> Tables</a></li>
-				<li><a href="#grid"><em class="fa fa-columns"></em> Grid</a></li>
+				<li><a href="Add_Committee.php"><em class="fa fa-user-plus"></em>Add Committee</a></li>
+				<li><a href="New_Password.php"><em class="fa fa fa-clone"></em> Change Password</a></li>
+				<li><a href="Send_Notice.php"><em class="fa fa-warning"></em> Send Notice</a></li>
+				<!-- <li><a href="#buttons"><em class="fa fa-hand-o-up"></em> Buttons</a></li> -->
+				<!-- <li><a href="#tables"><em class="fa fa-table"></em> Tables</a></li> -->
+				<!-- <li><a href="#grid"><em class="fa fa-columns"></em> Grid</a></li> -->
 				<li><a href="<?php echo $LogOut; ?>"><em class="fa fa-columns"></em> Logout </a></li>
 
 			</ul>

@@ -1,4 +1,6 @@
 <?php session_start(); 
+      include_once 'Header.php';
+      include_once 'Footer.php';
 
 ?>
 <!DOCTYPE html>
@@ -6,7 +8,7 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
-  <link href="logincss.css" rel="stylesheet">
+  <link href="css/logincss.css" rel="stylesheet">
 </head>
 <body>
 

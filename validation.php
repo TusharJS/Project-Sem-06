@@ -12,23 +12,26 @@ function name($name)
     }
 }
 
-function email($email)
-{ 
+function sel_email($email)
+{
   include_once 'Connection.php';
-  $select_email="select count(*) from tbl_member where email='$email'";
-  $row_email=mysqli_query($con,$select_email);
-  // $num_email=mysqli_num_rows($row_email);
-    if(empty($email) || !filter_var($email,FILTER_VALIDATE_EMAIL || $row_email <= 0) )
-    {
-        return true;
-    }   
+  global $conn;
+  
+  $select_email="select count(*),mail from tbl_member where email='$email'";
+  $row_email=mysqli_query($conn,$select_email);
+  $num_email=mysqli_num_rows($row_email);
+  // echo "<script>alert('ab".$num_email."abc');</script>";
+  if(empty($email) || !filter_var($email,FILTER_VALIDATE_EMAIL) || $num_email >= 1)
+  {
+      return true;
+  }   
   else
     {
       return false;
     }
 }
 
-function emails($emails)
+function email($emails)
 { 
   
     if(empty($emails) || !filter_var($emails,FILTER_VALIDATE_EMAIL))
@@ -102,23 +105,23 @@ function city($city)
     }
 }
 
-function contact($contact)
-{
-  global $con;
-  $select_contact="select * from customers where customer_contact='$contact'";
-  $row_contact=mysqli_query($con,$select_contact);
-  $num_contact=mysqli_num_rows($row_contact);
-    if(empty($contact) || !preg_match("/^[9876][0-9]{9}$/",$contact) || $num_contact!=0)
-    {
-        return true;
-    }
-    else
-    {
-      return false;
-    }
-}
+// function contact($contact)
+// {
+//   global $con;
+//   $select_contact="select * from customers where customer_contact='$contact'";
+//   $row_contact=mysqli_query($con,$select_contact);
+//   $num_contact=mysqli_num_rows($row_contact);
+//     if(empty($contact) || !preg_match("/^[9876][0-9]{9}$/",$contact) || $num_contact!=0)
+//     {
+//         return true;
+//     }
+//     else
+//     {
+//       return false;
+//     }
+// }
 
-function contacts($contact)
+function contact($contact)
 {
     if(empty($contact) || !preg_match("/^[9876][0-9]{9}$/",$contact))
     {
@@ -153,4 +156,5 @@ function pincode($pincode)
       return false;
     }
 }
+
 ?>

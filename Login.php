@@ -12,6 +12,7 @@
 </head>
 <body>
    <?php 
+      $err = "";
       if(isset($_REQUEST['btnLogin']))
       {
 
@@ -28,11 +29,13 @@
             $rows=mysqli_fetch_array($result);
 
             $_SESSION["mid"]=$rows["mid"];
-            $_SESSION["mbType"]=$rows["member_type"];
+            $_SESSION["mbType"]= $rows["member_type"];
             $_SESSION["mpass"] = $rows['password'];
             $_SESSION['mname'] = $rows['mname'];
             $_SESSION['uimg'] = $rows['image'];
             $_SESSION['wing'] = $rows['wing'];
+            $_SESSION['socid'] = $rows['sid'];
+
 
             $mt = $rows["member_type"];
             // echo $mt;
@@ -45,30 +48,36 @@
             }
             elseif($mt == "Secretary")
             {
-              header("location:Secretary_Dashboard.php");  
+              header("location:Secretary/Secretary_Dashboard.php");  
             }
             elseif($mt == "President")
             {
               header("location:President/President_Dashboard.php");
             }
+            elseif($mt == "Spresident")
+            {
+              header("location:SubPresident/SPresident_Dashboard.php");
+            }
             else
             {
-              header("location:SPresident_Dashboard.php");
+              header("location:Home.php");
             }
           }
+          else
+          {
+            $err = "Invalid username or password!";
           }
+        }
   ?>
   <form id="lgForm" action="" method="POST">
     <h1><b style="color:#35cebe;">LOGIN</b></h1>
     <div class="tab">USER ID:
       <p><input type="email" placeholder="Enter email..." oninput="this.className = ''" name="email" id="user"></p>
     </div>
-    <span style="color: red;"><?php //echo $error_email; ?></span><br>
     <div class="tab">PASSWORD:
       <p><input type="password" placeholder="Enter Password...." oninput="this.className = ''" name="pwd" id="pass"></p>
     </div>
-    <span style="color: red;"><?php //echo $Pass_error; ?></span>
-    <span style="color: red;"><?php //echo $err; ?></span>
+    <span style="color: red;"><?php echo $err; ?></span>
     <div style="overflow:auto;">
       <div style="float:right;">
         <input type="submit" value="Login" onclick="next()" name="btnLogin" style="background-color:#35cebe; color:#ffffff;">

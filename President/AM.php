@@ -40,6 +40,10 @@
         margin-left: 100px;
         margin-top: 100px;
       }
+
+      body {
+        background-color: #f7f2dfe7;
+      }
     </style>
 
 </head>
@@ -47,7 +51,9 @@
     <?php 
     
     $w = $_SESSION['wing'];
-    $result = mysqli_query($conn, "SELECT mid,mname,phone,wing,flat,image From tbl_member where is_approved='Pending' and wing='$w' ");  ?>
+    $s = $_SESSION['socid'];
+
+    $result = mysqli_query($conn, "SELECT mid,mname,phone,wing,flat,image,email From tbl_member where is_approved='Pending' and wing='$w' and sid='$s'");  ?>
     <form action="" method="POST">
 			<div class="row grid-responsive" id="tbl">
 				<div class="column ">
@@ -82,10 +88,11 @@
             <td><?php echo $data['phone']; ?></td>
             <td><?php echo $data['wing']; ?></td>
             <td><?php echo $data['flat']; ?></td>
+            <input type="hidden" value="<?=$data['email'];?>" id='hid_Email' ">
             <!-- <td><?php echo '<img src="Image/user/'.$data['image'].' )."/>'; ?></td> -->
             <td style="width: 150px; height: 200;"><img src="../Image/user/<?php echo $data['image']; ?>"></td>
-            <td><a href='javascript:void(0)' disabled onclick='approve(<?php echo $data['mid']; ?>)'><img src="../Image/approve.png" style="width:42px;height:42px;"></a></td>
-            <td><a href='javascript:void(0)' onclick='reject(<?php echo $data['mid']; ?>)'><img src="../Image/reject.png" style="width:42px;height:42px;"></a></td>     
+            <td><a href='javascript:void(0)' onclick='approve(<?php echo $data['mid']; ?>)'><img src="../Image/approve.png" style="width:42px;height:42px;"></a></td>
+            <td><a href='javascript:void(0)' onclick='reject(<?php echo $data['mid'] ?>)'><img src="../Image/reject.png" style="width:42px;height:42px;"></a></td>     
       <?php $i++; } ?>
               
                   </tr>
@@ -103,37 +110,38 @@
       
 
       <script>
-        function filterGlobal () {
-        $('#UserTable').DataTable().search(
-                $('#global_filter').val(),
-                $('#global_regex').prop('checked'),
-                $('#global_smart').prop('checked')
-            ).draw();
-        }
+        // function filterGlobal () {
+        // $('#UserTable').DataTable().search(
+        //         $('#global_filter').val(),
+        //         $('#global_regex').prop('checked'),
+        //         $('#global_smart').prop('checked')
+        //     ).draw();
+        // }
         
-        function filterColumn ( i ) {
-            $('#UserTable').DataTable().column( i ).search(
-                $('#col'+i+'_filter').val(),
-                $('#col'+i+'_regex').prop('checked'),
-                $('#col'+i+'_smart').prop('checked')
-            ).draw();
-        }
+        // function filterColumn ( i ) {
+        //     $('#UserTable').DataTable().column( i ).search(
+        //         $('#col'+i+'_filter').val(),
+        //         $('#col'+i+'_regex').prop('checked'),
+        //         $('#col'+i+'_smart').prop('checked')
+        //     ).draw();
+        // }
         
-        $(document).ready(function() {
-            $('#UserTable').DataTable();
+        // $(document).ready(function() {
+        //     $('#UserTable').DataTable();
         
-            $('input.global_filter').on( 'keyup click', function () {
-                filterGlobal();
-            } );
+        //     $('input.global_filter').on( 'keyup click', function () {
+        //         filterGlobal();
+        //     } );
         
-            $('input.column_filter').on( 'keyup click', function () {
-                filterColumn( $(this).parents('tr').attr('data-column') );
-            } );
-        } );
+        //     $('input.column_filter').on( 'keyup click', function () {
+        //         filterColumn( $(this).parents('tr').attr('data-column') );
+        //     } );
+        // } );
 
         function approve(mid)
         {
             var id = mid;
+            // var mail = $('#hid_Email').val();
             $.ajax({
               type:"GET",
               url:"app_rej.php",
@@ -142,14 +150,17 @@
               success:function(data)
               {
                 // $(#userTable).html(data);
-                  alert('approved');
+                  alert('Approved');
               }
             });
+            // alert($('#hid_Email').val());
+
         }
 
         function reject(mid)
         {
             var id = mid;
+            // var mail = email;
             $.ajax({
               type:"GET",
               url:"app_rej.php",
@@ -158,7 +169,7 @@
               success:function(data)
               {
                 // $(#userTable).html(data);
-                  alert('rejected');
+                  alert('Rejected');
               }
             });
         }

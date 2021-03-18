@@ -1,7 +1,7 @@
 <?php 
   session_start();
   include_once 'Connection.php';
-  include_once 'other/validation.php';
+  include_once 'validation.php';
   include_once 'links.php';
   // echo $header;
   include_once 'Header.php';
@@ -16,19 +16,71 @@
     $passwordErr = "";
     $wingErr = "";
     $flatErr = "";
+    $errorresult = false;
 
     if(isset($_REQUEST["regBtn"]) && isset($_FILES["image"]))
     {
+
+      $name = $_REQUEST['name'];
+      $mob = $_REQUEST['mob'];    
+      $wing = $_REQUEST['wing'];
+      $flat = $_REQUEST['flat'];
+      $pas = $_REQUEST['pwd'];
+      $email = $_REQUEST['email'];
+      $filename = $_FILES["image"]["name"]; 
+      $tempname = $_FILES["image"]["tmp_name"]; 
+      $folder = "../Image/user/".$filename;
+      
+      if($_REQUEST['soc'] <= 0 || $_REQUEST['soc'] == "")
+      {
+          $SocError = "Required.. || Please select society.";
+          $errorresult=true;
+      }
+      else
+      {
         $sid = $_REQUEST['soc'];
-        $name = $_REQUEST['name'];
-        $mob = $_REQUEST['mob'];    
-        $wing = $_REQUEST['wing'];
-        $flat = $_REQUEST['flat'];
-        $pas = $_REQUEST['pwd'];
-        $email = $_REQUEST['email'];
-        $filename = $_FILES["image"]["name"]; 
-        $tempname = $_FILES["image"]["tmp_name"]; 
-        $folder = "../Image/user/".$filename; 
+      }
+
+      if($flat <= 0)
+      {
+          $SocError = "Required.. || Please enter valid flat no.";
+          $errorresult=true;
+      }
+      
+      if(name($name))
+      {
+          $nameErr = "Required.. || Please enter valid first name.";
+          $errorresult=true;
+      }
+
+      if(contact($mob))
+      {
+          $ContactnoErr = "Required.. || Please enter valid contact number.";
+          $errorresult=true;
+      }
+
+      if(pass($pas))
+      {
+          $passwordErr = "Required.. || Password Must be consist of uppercase letter,special symbol and number.";
+          $errorresult=true;
+      }
+
+      if(sel_email($email))
+      {
+          $emailErr = "Required.. || Please enter valid Email. || Email already Exist.";
+          $errorresult=true;
+      }
+
+      if(images($filename))
+      {
+          $imgerror = "Only JPEG or PNG or JPG file supported.";
+          $errorresult=true;
+      }
+
+      if($errorresult==true)
+      {
+          goto start;
+      }
 
         $path    = '../Image/user';
         $files = array_diff(scandir($path), array('.', '..'));
@@ -51,7 +103,7 @@
 
         if (move_uploaded_file($tempname, $folder))  { 
           // $msg = "Image uploaded successfully"; 
-          echo '<script>alert("success");</script>';
+          echo '<script>alert("We will send your registration status on your registered email within 2 days !! ");</script>';
         }else{ 
           echo '<script>alert("fail");</script>';
         } 
@@ -63,7 +115,7 @@
 }
       
 
-
+start:
 ?>
 <!DOCTYPE html>
 <html>
@@ -86,14 +138,16 @@
         <div class="tab">Full Name:
         <p><input type="text" placeholder="Enter Full Name..." oninput="this.className = ''" name="name" id="user" title="Name" required></p>
         </div>
-        <span style="color: red;"><?php echo $nameErr; ?></span>
+        <span style="color: red;" id="nameErr"><?php echo $nameErr; ?></span>
         <div class="tab">Mobile Number:
-        <p><input type="tel" placeholder="Enter mobile number...." oninput="this.className = ''" name="mob" title="Eight or more characters" maxlength="10" minlength="10" required></p>
+        <p><input type="tel" placeholder="Enter mobile number...." oninput="this.className = ''" name="mob" title="Eight or more characters" maxlength="10" minlength="10"  required></p>
         </div>
-        <span style="color: red;"><?php //echo $ContactnoErr; ?></span>
+        <span style="color: red;" id="phoneErr"><?php echo $ContactnoErr; ?></span>
         <div class="tab">Image:
             <p><input type="file" placeholder="select image...." oninput="this.className = ''" name="image" id="image" /></p>
         </div>
+        <span style="color: red;" id="imgErr"><?php echo $imgerror; $im ?></span>
+
         
         
         <div class="tab" style="margin-bottom: 15px;">State:
@@ -129,23 +183,24 @@
                   <!-- <option>--Select your Society--</option>  -->
               </select>
         </div> 
+        <span style="color: red;" id="socErr"></span>
 
         <div class="tab">Wing:
             <p><input type="text" placeholder="Enter wing...." oninput="this.className = ''" name="wing" id="wing" required></p>
         </div>
-        <span style="color: red;"><?php echo $wingErr; ?></span>
+        <span style="color: red;" id="wingErr"><?php echo $wingErr; ?></span>
         <div class="tab">Flat No.:
             <p><input type="number" placeholder="Enter Flat no....." oninput="this.className = ''" name="flat" id="flat" required></p>
         </div>
-        <span style="color: red;"><?php echo $flatErr; ?></span>
+        <span style="color: red;" id="flatErr"><?php echo $flatErr; ?></span>
         <div class="tab">Email:
-            <p><input type="email" placeholder="Enter email...." oninput="this.className = ''" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required></p>
+            <p><input type="email" placeholder="Enter email...." oninput="this.className = ''" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" name="email" required></p>
         </div>
-        <span style="color: red;"><?php echo $emailErr; ?></span>
+        <span style="color: red;" id="emailErr"><?php echo $emailErr; ?></span>
         <div class="tab">Password:
             <p><input type="password" placeholder="Enter Password...." oninput="this.className = ''" name="pwd" id="pass" required></p>
         </div>
-        <span style="color: red;"><?php echo $passwordErr; ?></span>
+        <span style="color: red;" id="passErr"><?php echo $passwordErr; ?></span>
         </div>
     </div>
     <div style="overflow:auto;">
@@ -233,9 +288,9 @@
 
     function next()
     {
+      
       var inp = document.getElementsByTagName("input");
       // var y = document.getElementById("user");
-
       var i,blank=0;
       for(i=0;i<inp.length;i++)
       {
@@ -246,10 +301,50 @@
         }
       }
 
-      if(blank == 0)
+      if(!/^[a-zA-Z ']{0,31}$/.test(inp[0].value))
       {
-        alert("We will send your registration status on your registered email within 2 days !! ");  
+        document.getElementById("nameErr").innerHTML = "Name is not valid.";
       }
+
+      if(!/^[9876][0-9]{9}$/.test(inp[1].value))
+      {
+        document.getElementById("phoneErr").innerHTML = "Phone Number is not valid.";
+      }
+
+      if(!/^[a-zA-z]$/.test(inp[3].value))
+      {
+        document.getElementById("wingErr").innerHTML = "Wing is not valid.";
+      }
+
+      if(!/^[0-9]{0,4}$/.test(inp[4].value))
+      {
+        document.getElementById("flatErr").innerHTML = "Flat no. is not valid.";
+      }
+
+      if(!/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(inp[5].value))
+      {
+        document.getElementById("emailErr").innerHTML = "Email is not valid.";
+      }
+
+      if(inp[6].value.length >=! 8)
+      {
+        document.getElementById("passErr").innerHTML = "Password must be 8 character long.";
+      }
+      
+      selectElement = document.querySelector('#society_dropdown'); 
+      output = selectElement.value; 
+
+      if(output == "")
+      {
+        document.getElementById("socErr").innerHTML = "Please select society.";
+      }  
+
+
+
+      // if(blank == 0)
+      // {
+      //   alert("We will send your registration status on your registered email within 2 days !! ");  
+      // }
 
 
     }
