@@ -80,7 +80,7 @@
         // echo "<script>alert(".$_COOKIE['stid'].");</script>";
         // echo "<script>document.getElementById('error').innerHTML = Select state and city both!!</script>";
         echo "<script>alert('Select state and city both!!');</script>"; 
-        echo "<script>alert(".$_COOKIE['stid']."<br>".$_COOKIE['cid'].");</script>";  
+        // echo "<script>alert(".$_COOKIE['stid']."<br>".$_COOKIE['cid'].");</script>";  
 
       }
 

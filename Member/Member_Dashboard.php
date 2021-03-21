@@ -1,55 +1,87 @@
 <?php 
-  session_start();
+	session_start();
+	include_once '../links.php';
 
-  if($_SESSION['mid'] == "")
-  {
-      header("location:home.php");
-  }
+	if($_SESSION['mid'] == "")
+	{
+		header("location:../Home.php");
+	}
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+	<meta charset="utf-8">
+	<title>Member Dashboard</title>
+	
+	<!-- Google Fonts -->
+	<!-- <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700" rel="stylesheet"> -->
+	
+	<link rel="stylesheet" href="../css/font-awesome.min.css">
+	<link rel="stylesheet" href="../css/normalize.css">
+	<link rel="stylesheet" href="../css/milligram.min.css">
+	<link rel="stylesheet" href="../css/styles.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" rel="stylesheet"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
+	
+	<style>
+	</style>
 
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
-
-  <title>Member Dashboard</title>
-
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
-  <!-- Custom styles for this template -->
-  <link href="css/simple-sidebar.css" rel="stylesheet">
-
+	<!--[if lt IE 9]>
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
 </head>
 
 <body>
-  <div style="background-color:#696969; width:100%; height:75px;">
-    <a style="font-size:40px; color:#f0a73a; padding-left:10px; padding-top:15px;">DASHBOARD</a>
-    <!-- <button class="lbtn" href="Logout.php" style="background-color:blueviolet; float:right; padding:5px; border-radius:10px; margin-top:15px; margin-left:10px;">LOGOUT</button> -->
-    <a href="Logout.php" style="background-color:#ffffff; float:right; padding:5px; border-radius:10px; margin-top:15px; margin-left:20px;">Logout</a>
-    <a style="font-size:25px; color:#ffffff; padding-left:10px; float:right; padding-top:15px;">Hello,<?php echo $_SESSION['mname'];  ?></a>
-  </div>
+	<div class="navbar">
+		<div class="row">
+			<div class="column column-30 col-site-title"><a href="#" class="site-title float-left">Dashboard</a></div>
+			<!-- <div class="column column-30 col-site-title"><a href="#" class="site-title float-right	">Dashboard</a></div> -->
 
-  <div class="d-flex" id="wrapper">
-    <!-- <a style="text-align:left; text-size:15px; ">Dashboard</a> -->
-    <!-- Sidebar -->
-    <div class="bg-light border-right" id="sidebar-wrapper">
-      <!-- <div class="sidebar-heading">Dashboard</div> -->
-      <div class="list-group list-group-flush">
-        <a href="Edit_Profile.php" class="list-group-item list-group-item-action bg-light">Edit Profile</a>
-        <a href="New_Password.php" class="list-group-item list-group-item-action bg-light">Change Password</a>
-        <!-- <a href="#" class="list-group-item list-group-item-action bg-light">Overview</a> -->
-        <!-- <a href="#" class="list-group-item list-group-item-action bg-light">Events</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light">Profile</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light">Status</a> -->
-      </div>
-    </div>
-    
 
+			<div class="column column-15" id="user">
+				<div class="user-section"><a href="#">
+					<img src="../Image/user/<?php echo $_SESSION['uimg']; ?>" alt="profile photo" class="circle float-left profile-photo" width="50" height="auto">
+					<div class="username">
+						<h4><?php echo $_SESSION['mname']; ?></h4>
+						<p>Member</p>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<div class="row">
+		<div id="sidebar" class="column">
+			<h5>Navigation</h5>
+			<ul>
+				<li><a href="Member_Dashboard.php"><em class="fa fa-home"></em> Home</a></li>
+				<li><a href="Member_Profile.php"><em class="fa fa-user"></em> Profile</a></li>
+				<li><a href="Generate_Gatepass.php"><em class="fa fa-ticket"></em>Generate Gatepass</a></li>
+				<!-- <li><a href="New_Password.php"><em class="fa fa fa-key"></em> Change Password</a></li> -->
+				<!-- <li><a href="Send_Notice.php"><em class="fa fa-bell"></em> Send Notice</a></li> -->
+				<!-- <li><a href="Manage_Guard.php"><em class="fa fa-shield"></em> Manage Guard</a></li> -->
+				<!-- <li><a href="#tables"><em class="fa fa-table"></em> Tables</a></li> -->
+				<!-- <li><a href="#grid"><em class="fa fa-columns"></em> Grid</a></li> -->
+				<li><a href="<?php echo $LogOut; ?>"><em class="fa fa-columns"></em> Logout </a></li>
+
+			</ul>
+		</div>
+	</div>
+
+	
+<script>
+if(document.referrer.includes("Member_Profile"))
+{
+	// toastr.success('Profile Edited Successfully.');
+}
+
+// if(document.referrer.includes("Generate_Gatepass"))
+// {
+// 	toastr.success('Gatepass Genertaed Successfully.');
+// }
+</script>
+					
 </body>
-
-</html>
+</html> 

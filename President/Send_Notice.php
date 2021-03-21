@@ -12,19 +12,46 @@
 ?>
 <?php
     $notErr = "";
+    $err = false;
 
+    
     if(isset($_REQUEST['sendnotice']))
     {
-        if(empty($_REQUEST['notice']))
+      // echo "<script>alert('start');</script>";
+    
+      $mid= $_SESSION['mid'];
+      $notice = $_REQUEST['notice_text'];
+      echo $notice;
+
+        if(empty($notice))
         {
              $notErr = "Enter Notice Properly!!";  
-             goto start; 
+             $err = true ;
         }
 
-        $mid= $_SESSION['mid'];
-        $notice=$_REQUEST['notice'];
-        $query = "insert into tbl_notice (mid,message) values ($mid,$notice)";
-        $insert = mysqli_query($conn,$query);
+        if($err == true)
+        {
+          goto start;
+        }
+
+        
+        // $n = $_REQUEST['notice_text'];
+
+        // echo "<script>alert(".$mid.");</script>";
+        // echo "<script>alert(".$notice.");</script>";
+        // echo "<script>alert('start123');</script>";
+
+        $query = "insert into tbl_notice (mid,message) values ($mid,'".$notice."')";
+        
+        // echo "<script>alert('start');</script>";
+        if(!mysqli_query($conn,$query))
+        {
+            echo "<script>alert(".mysqli_error($conn).");</script>";
+        }
+        else
+        {
+            echo "<script>alert('abcdefno');</script>";
+        }
     }
 
 start:    
@@ -65,15 +92,15 @@ start:
     <div class="row">
         <div class="column" >
         <div class="tab">Notice :
-            <textarea rows="5" name="notice" placeholder="Enter notice here..."></textarea>
+            <textarea rows="5" name="notice_text" placeholder="Enter notice here..."></textarea>
             <span id="noticeErr" style="color: red;"><?php echo $notErr;  ?></span>
         <div class="btn-block">
-        <input type="submit" name="sendnotice" onclick="valid()" value="Send" style="width: 150px; font-size:15px;">
+        <input type="submit" name="sendnotice" value="Send" style="width: 150px; font-size:15px;">
         <input type="reset" value="Reset" style="width: 150px; font-size:15px;">
     </div>
 </form>
 
-<script>
+<!-- <script>
     function valid()
     {
         // alert('dsd');
@@ -88,6 +115,6 @@ start:
             document.getElementById("noticeErr").innerHTML = "Notice is not valid.";
         }
     }
-</script>
+</script> -->
 </body>
 </html>

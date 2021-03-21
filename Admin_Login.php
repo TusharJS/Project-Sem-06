@@ -12,9 +12,9 @@
 </head>
 <body>
    <?php 
+          $err = " ";
       if(isset($_REQUEST['btnLogin']))
       {
-
           $usr=$_POST["email"];
           $pas=$_POST["pwd"];
           $sql = "select count(*) from tbl_member where email ='$usr' and password=md5('$pas') and member_type='Admin' ";
@@ -40,6 +40,10 @@
             header("location:Admin/Admin_Dashboard.php");
            
           }
+          else
+          {
+            $err = "Invalid username or password!";
+          }
         }
   ?>
   <form id="lgForm" action="" method="POST">
@@ -52,7 +56,7 @@
       <p><input type="password" placeholder="Enter Password...." oninput="this.className = ''" name="pwd" id="pass"></p>
     </div>
     <span style="color: red;"><?php //echo $Pass_error; ?></span>
-    <span style="color: red;"><?php //echo $err; ?></span>
+    <span style="color: red;"><?php echo $err; ?></span>
     <div style="overflow:auto;">
       <div style="float:right;">
         <input type="submit" value="Login" onclick="next()" name="btnLogin" style="background-color:#35cebe; color:#ffffff;">

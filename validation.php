@@ -16,19 +16,40 @@ function sel_email($email)
 {
   include_once 'Connection.php';
   global $conn;
+  // $num_email = 0;
   
-  $select_email="select count(*),mail from tbl_member where email='$email'";
+  $select_email="select count(*),email from tbl_member where email='$email'";
   $row_email=mysqli_query($conn,$select_email);
-  $num_email=mysqli_num_rows($row_email);
-  // echo "<script>alert('ab".$num_email."abc');</script>";
-  if(empty($email) || !filter_var($email,FILTER_VALIDATE_EMAIL) || $num_email >= 1)
+  // $num_email=mysqli_num_rows($row_email);
+  $data = mysqli_fetch_array($row_email);
+  if(empty($email) || !filter_var($email,FILTER_VALIDATE_EMAIL) || $data["count(*)"] != 0)
   {
       return true;
   }   
   else
-    {
-      return false;
-    }
+  {
+    return false;
+  }
+}
+
+function sel_UpPro_email($email,$mid)
+{
+  include_once 'Connection.php';
+  global $conn;
+  // $num_email = 0;
+  
+  $select_email="select count(*),email from tbl_member where email='$email' and email NOT IN (SELECT email FROM tbl_member WHERE mid = $mid)";
+  $row_email=mysqli_query($conn,$select_email);
+  // $num_email=mysqli_num_rows($row_email);
+  $data = mysqli_fetch_array($row_email);
+  if(empty($email) || !filter_var($email,FILTER_VALIDATE_EMAIL) || $data["count(*)"] != 0)
+  {
+      return true;
+  }   
+  else
+  {
+    return false;
+  }
 }
 
 function email($emails)
@@ -157,4 +178,19 @@ function pincode($pincode)
     }
 }
 
+function chk_date($indate)
+{
+  $cur = date("d-m-Y");
+
+  if($indate < $cur)
+  {
+      return true;
+  }
+  else
+  {
+    return false;
+  }
+
+}
 ?>
+
