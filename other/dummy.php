@@ -956,3 +956,97 @@ Add_Society.php
   </script>
 </body>
 </html>
+
+
+
+-------------------------------------------------------------------------------------------------------------------
+visitor entry request form
+
+
+<form action="" method="POST" name="lgForm" id="lgForm" onsubmit="return validateForm()" novalidate>
+
+        <h3><b style="color:#35cebe;">VISITOR ENTRY REQUEST</b></h3>
+        <div class="tab">Visitor Name:
+            <p><input type="text" placeholder="Enter Visitor name..." name="name" id="name" required="true"></p>
+        </div>
+        <div class="tab">Visitor Mobile No::
+            <p><input type="phone" placeholder="Enter Visitor mobile number..." name="contact" id="contact" maxlength="10" required="true"></p>
+        </div>
+        <div class="tab" style="margin-bottom: 15px;">Wing:<br>
+            <select name="wing" id="wing_dropdown">
+                <option>--  SELECT WING  --</option>
+                <?php
+                //                      $records = mysqli_query($conn, "SELECT wing From tbl_member where sid=$_SESSION["socid"]");  // Use select query here
+                //
+                //                      while($data = mysqli_fetch_array($records))
+                //                      {
+                //                          echo "<option value='". $data['stid'] ."'>" .$data['sname'] ."</option>";  // displaying data in option menu
+                //                      }
+                ?>
+            </select>
+        </div>
+
+        <div class="tab" style="margin-bottom: 15px;">Select Flate:<br>
+            <select name="flat" id="flat_dropdown" onselect="myFunction()">
+                <option>--  SELECT FLAT  --</option>
+            </select>
+        </div>
+        <div class="tab">Description:
+            <p><textarea name="desc" id="desc" rows="5" cols="94" placeholder="Enter Description...." required="true"></textarea></p>
+        </div>
+        <div class="tab">Image:
+            <p><input type="file" placeholder="select image...." name="image" id="image" /></p>
+        </div>
+        <div style="overflow:auto;">
+            <div style="float:right;">
+                <!-- <input type="submit" value="Send" name="btnSendreq" style=" background-color:#35cebe; font-size:15px; color:#ffffff;"> -->
+                <button type="submit" value="Send" id="btnSendreq" name="btnSendreq" style="text-align: center; font-size: 15px;">SEND</button>
+
+            </div>
+        </div>
+    </form>
+
+
+    function validateForm() {
+        var err = false;
+        var name = $('#name').val();
+        var contact = $('#contact').val();
+        var desc = $('#desc').val();
+        var flat = $('#flat_dropdown').val();
+        var wing = $('#wing_dropdown').val();
+
+        if (name == "" || name == " " || !/^[a-zA-Z ']{0,31}$/.test(name)) {
+            toastr.error('Name Is not Valid.');
+            err = true;
+        }
+
+        if (contact == "" || contact == " " || !/^[9876][0-9]{9}$/.test(contact)) {
+            toastr.error('Contact Is not Valid.');
+            err = true;
+        }
+
+        if (desc == "" || desc == " " ){
+            toastr.error('Description Is not Valid.');
+            err = true;
+        }
+
+        if (wing == "" || wing <= 0) {
+            toastr.error('Select Wing.');
+            err = true;
+        }
+
+        if (flat == "" || flat <= 0) {
+            toastr.error('Select Flat.');
+            err = true;
+        }
+
+        if (err == true) {
+            return false;
+        }
+
+    }
+
+
+
+    login-status add into member table
+    give member functionality to president

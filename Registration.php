@@ -98,7 +98,7 @@
             }
         }   
 
-        $query = "insert into tbl_member (sid,mname,phone,wing,flat,image,email,password,member_type) values ($sid,'$name','$mob','$wing','$flat','$filename','$email',md5('$pas'),'Member')";
+        $query = "insert into tbl_member (sid,mname,phone,wing,flat,image,email,password,member_type) values ($sid,'$name','$mob',UPPER('$wing'),'$flat','$filename','$email',md5('$pas'),'Member')";
         $insert = mysqli_query($conn,$query);
 
         if (move_uploaded_file($tempname, $folder))  { 

@@ -222,15 +222,15 @@ body {
 		<h1><a href="Home.php">My<span>Society</span></a></h1>
 
 		<nav>
-                    <a href="Home.php" style="font-size: 25px;" class="selected">Home</a>
+                    <!-- <a href="Home.php" style="font-size: 25px;" class="selected">Home</a>
 					<a href="#" style="font-size: 25px;" class="selected">About Us</a>
 					<a href="#" style="font-size: 25px;" class="selected">Contact Us</a>
-					<a href="#" style="font-size: 25px;" class="selected">Service</a>
+					<a href="#" style="font-size: 25px;" class="selected">Service</a> -->
 		</nav>
 
 		<ul>
-			<li><a href="Login.php">Login</a></li>
-			<li><a href="Registration.php">Sign up</a></li>
+			<!-- <li><a href="Login.php">Login</a></li>
+			<li><a href="Registration.php">Sign up</a></li> -->
 		</ul>
 
 	</div>

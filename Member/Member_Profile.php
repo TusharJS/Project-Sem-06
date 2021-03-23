@@ -123,7 +123,7 @@ if ($_SESSION['mid'] == "") {
     $result = mysqli_query($conn, $sel_data);
     $data = mysqli_fetch_array($result);
     ?>
-    <form action="" id="regForm" method="POST" onsubmit="return validateForm()" style="margin-left: 500px; margin-top: 155px; " enctype="multipart/form-data" novalidate>
+    <form action="" id="regForm" method="POST" onsubmit="return validateForm()" style="margin-left: 500px; margin-top: 155px;   border-radius: 10px;" enctype="multipart/form-data" novalidate>
 
 
         <h1><b style="color:#f0a73a;">Edit Profile</b></h1><br><br>

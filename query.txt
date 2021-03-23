@@ -5,3 +5,9 @@ on E.CITYID=C.ID
 where E.GENDER='F' and C.NAME in('Mumbai','Goa') group by C.NAME;
 
 select c.cname from tbl_City c inner join tbl_state s on c.stid = s.stid where c.stid = 
+
+select * from tbl_notice N INNER JOIN tbl_member M on N.mid = M.id where M.sid = $_SESSION['socid'] and M.wing = $_SESSION['wing'] M.member_type IN ('President','Spresident');
+
+select * from tbl_notice where mid = (select mid from tbl_member where sid = $sid and wing = '$wing' and member_type IN ('President','Spresident'))
+
+select * from tbl_visitor where mid = (select mid from tbl_member where sid = $_SESSION['socid])

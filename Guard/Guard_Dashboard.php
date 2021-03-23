@@ -11,7 +11,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>President Dashboard</title>
+	<title>Guard Dashboard</title>
 	
 	<!-- Google Fonts -->
 	<!-- <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700" rel="stylesheet"> -->
@@ -20,6 +20,8 @@
 	<link rel="stylesheet" href="../css/normalize.css">
 	<link rel="stylesheet" href="../css/milligram.min.css">
 	<link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
 	
 	<style>
 	</style>
@@ -41,7 +43,7 @@
 					<img src="../Image/user/<?php echo $_SESSION['uimg']; ?>" alt="profile photo" class="circle float-left profile-photo" width="50" height="auto">
 					<div class="username">
 						<h4><?php echo $_SESSION['mname']; ?></h4>
-						<p>President</p>
+						<p>Guard</p>
 					</div>
 				</div>
 			</div>
@@ -52,14 +54,10 @@
 		<div id="sidebar" class="column">
 			<h5>Navigation</h5>
 			<ul>
-				<li><a href="<?php echo $PreDash; ?>"><em class="fa fa-home"></em> Home</a></li>
-				<li><a href="Add_Member.php"><em class="fa fa-user-plus"></em>Add Member</a></li>
-				<li><a href="Add_Committee.php"><em class="fa fa-users"></em>Add Committee</a></li>
-				<li><a href="New_Password.php"><em class="fa fa fa-key"></em> Change Password</a></li>
-				<li><a href="Send_Notice.php"><em class="fa fa-bell"></em> Send Notice</a></li>
-				<li><a href="Manage_Guard.php"><em class="fa fa-shield"></em> Manage Guard</a></li>
-				<!-- <li><a href="#tables"><em class="fa fa-table"></em> Tables</a></li> -->
-				<!-- <li><a href="#grid"><em class="fa fa-columns"></em> Grid</a></li> -->
+				<li><a href="Guard_Dashboard.php"><em class="fa fa-home"></em> Home</a></li>
+				<li><a href="Manage_GP.php"><em class="fa fa-user-plus"></em>Manage Gatepass</a></li>
+				<li><a href="Address_Book.php"><em class="fa fa-address-card"></em>Address Book</a></li>
+				<li><a href="VEntry_Request.php"><em class="fas fa-door-open"></em> Visitor Entry Request</a></li>
 				<li><a href="<?php echo $LogOut; ?>"><em class="fa fa-columns"></em> Logout </a></li>
 
 			</ul>

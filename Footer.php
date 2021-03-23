@@ -35,7 +35,7 @@ p a:hover {
     
     <div class="footer">
         <span id="fCon">© 2021 Copyright: devloped by Tushar Savaliya & Parth Lunagariya</span>
-        <b><a href="Admin_Login.php" style="color: White; text-decoration:none; margin-left: 300px;">Admin Login</a></b>
+        <!-- <b><a href="Admin_Login.php" style="color: White; text-decoration:none; margin-left: 300px;">Admin Login</a></b> -->
 
 
     </div>

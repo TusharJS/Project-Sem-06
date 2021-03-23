@@ -29,22 +29,17 @@ if ($_SESSION['mid'] == "") {
     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" rel="stylesheet"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
 
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
-
-    <!-- <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" /> -->
-    <!-- <script type="text/javascript" src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script> -->
+    <!-- datatable cdn -->
+    <link href="//cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
+    <script src="//cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js" type="text/javascript"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.css">
 
     <link rel="stylesheet" href="../css/font-awesome.min.css">
     <link rel="stylesheet" href="../css/normalize.css">
     <link rel="stylesheet" href="../css/milligram.min.css">
     <link rel="stylesheet" href="../css/styles.css">
-    <!-- <link href="css/datatables/dataTables.bootstrap.css" rel="stylesheet" type="text/css" /> -->
-    <!-- <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script> -->
-    <!-- <script src="js/datatables/jquery.dataTables.js" type="text/javascript"></script>
-    <script src="js/datatables/dataTables.bootstrap.js" type="text/javascript"></script> -->
 
 
     <style>
@@ -119,7 +114,6 @@ if ($_SESSION['mid'] == "") {
     $s = $_SESSION['socid'];
 
     $result = mysqli_query($conn, "SELECT mid,mname,phone,email,image From tbl_member where member_type='Guard' and sid='$s' and is_approved='Approved'");  ?>
-    <form action="" method="POST" id="fmGuard">
         <div class="row grid-responsive" id="tbl">
             <div class="column ">
                 <div class="card">
@@ -139,23 +133,23 @@ if ($_SESSION['mid'] == "") {
                                     <th>Delete</th>
                                 </tr>
                             </thead>
-                            <?php
-                            $i = 1;
-                            while ($data = mysqli_fetch_array($result)) {
-                            ?>
+                            
                                 <tbody>
+                                    <?php
+                                        $i = 1;
+                                        while ($data = mysqli_fetch_array($result)) {
+                                    ?>
                                     <tr>
                                         <th scope="row" style="padding-left: 10px;"><?php echo $i; ?></th>
-                                        <?php $mid = $data['mid']; ?>
+                                        <?php //$mid = $data['mid']; ?>
                                         <td><?php echo $data['mname']; ?></td>
                                         <td><?php echo $data['phone']; ?></td>
                                         <td><?php echo $data['email']; ?></td>
-                                        <!-- <td><?php echo '<img src="Image/user/' . $data['image'] . ' )."/>'; ?></td> -->
+                                        <!-- <td><?php //echo '<img src="Image/user/' . $data['image'] . ' )."/>'; ?></td> -->
                                         <!-- <td style="width: 150px; height: 200;"><img src="../Image/user/<?php //echo $data['image']; ?>"></td> -->
                                         <td><a href='javascript:void(0)' onclick='del_guard(<?php echo $data['mid'] ?>)'><img src="../Image/reject.png" style="width:42px;height:42px;"></a></td>
                                     <?php $i++;
                                 } ?>
-
                                     </tr>
                                 </tbody>
                         </table>
@@ -166,7 +160,6 @@ if ($_SESSION['mid'] == "") {
         </tbody>
 
 
-    </form>
 
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -213,22 +206,23 @@ if ($_SESSION['mid'] == "") {
         //     });
         // });
 
+        $(document).ready(function() {
+            $('#UserTable').DataTable();
+        });
+        
+
         function del_guard(mid) {
             var id = mid;
-            // var mail = $('#hid_Email').val();
             $.ajax({
                 type: "GET",
                 url: "app_rej.php",
-                // data: "id="+id,
                 data: {
                     id: id,
                     action: 'delete_g'
                 },
                 success: function(data) {
-                    // $(#userTable).html(data);
                     alert('Deleted');
                     location.reload();
-                    // $('#fmGuard').load(location.href);
 
                 }
             });

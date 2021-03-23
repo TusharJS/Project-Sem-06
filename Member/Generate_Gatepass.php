@@ -134,7 +134,7 @@ if ($_SESSION['mid'] == "") {
     // start:
     ?>
 
-    <form action="" id="regForm"  method="POST" onsubmit="return validateForm()" style="margin-left: 500px; margin-top: 110px; " enctype="multipart/form-data" novalidate>
+    <form action="" id="regForm"  method="POST" onsubmit="return validateForm()" style="margin-left: 500px; margin-top: 110px; border-radius: 15px;" enctype="multipart/form-data" novalidate>
 
 
         <h1><b style="color:#f0a73a;">Generate Gatepass</b></h1><br><br>
