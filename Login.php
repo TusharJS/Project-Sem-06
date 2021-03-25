@@ -3,11 +3,26 @@ include_once 'Connection.php';
 include_once 'Header.php';
 include_once 'Footer.php';
 
-// if($_SESSION['mid'] != "")
-// {
-//     echo "<script>alert('One User already login!!!');</script>";
-// }
+if (!empty($_SESSION)) {
+  $mt = $_SESSION["mbType"];
+  // echo $mt;
+  // header("location:Member_Dashboard.php");
+  // echo '<script>alert("Success");</script>';
 
+  if ($mt == "Member") {
+    header("location:Member/Member_Dashboard.php");
+  } elseif ($mt == "Secretary") {
+    header("location:Secretary/Secretary_Dashboard.php");
+  } elseif ($mt == "President") {
+    header("location:President/President_Dashboard.php");
+  } elseif ($mt == "Spresident") {
+    header("location:SubPresident/SPresident_Dashboard.php");
+  } elseif ($mt == "Guard") {
+    header("location:Guard/Guard_Dashboard.php");
+  } else {
+    header("location:Home.php");
+  }
+}
 
 ?>
 <!DOCTYPE html>
@@ -28,69 +43,57 @@ include_once 'Footer.php';
   $err = "";
   if (isset($_REQUEST['btnLogin'])) {
 
-    if(!empty($_SESSION))
-    {
+    if (!empty($_SESSION)) {
       $err = "Already one user is logged in.";
-    }
-    else
-    {
+    } else {
 
-    $usr = $_POST["email"];
-    $pas = $_POST["pwd"];
-    $sql = "select count(*) from tbl_member where email ='$usr' and password=md5('$pas') and is_approved='Approved' ";
-    $result = mysqli_query($conn, $sql);
-    $rows = mysqli_fetch_array($result);
-
-    if ($rows["count(*)"] > 0) {
-
-      $sql = "select * from tbl_member where email ='$usr' and password=md5('$pas')";
+      $usr = $_POST["email"];
+      $pas = $_POST["pwd"];
+      $sql = "select count(*) from tbl_member where email ='$usr' and password=md5('$pas') and is_approved='Approved' ";
       $result = mysqli_query($conn, $sql);
       $rows = mysqli_fetch_array($result);
 
-      $_SESSION["mid"] = $rows["mid"];
-      $_SESSION["mbType"] = $rows["member_type"];
-      $_SESSION["mpass"] = $rows['password'];
-      $_SESSION['mname'] = $rows['mname'];
-      $_SESSION['uimg'] = $rows['image'];
-      $_SESSION['wing'] = $rows['wing'];
-      $_SESSION['socid'] = $rows['sid'];
-      $_SESSION['flat'] = $rows['flat'];
+      if ($rows["count(*)"] > 0) {
+
+        $sql = "select * from tbl_member where email ='$usr' and password=md5('$pas')";
+        $result = mysqli_query($conn, $sql);
+        $rows = mysqli_fetch_array($result);
+
+        $_SESSION["mid"] = $rows["mid"];
+        $_SESSION["mbType"] = $rows["member_type"];
+        $_SESSION["mpass"] = $rows['password'];
+        $_SESSION['mname'] = $rows['mname'];
+        $_SESSION['uimg'] = $rows['image'];
+        $_SESSION['wing'] = $rows['wing'];
+        $_SESSION['socid'] = $rows['sid'];
+        $_SESSION['flat'] = $rows['flat'];
+        $_SESSION['email'] = $rows['email'];
+        $_SESSION['phone'] = $rows['phone'];
 
 
-      // header("location:Check_Multilogin.php");
-      $mt = $rows["member_type"];
-      // echo $mt;
-      // header("location:Member_Dashboard.php");
-      // echo '<script>alert("Success");</script>';
+        // header("location:Check_Multilogin.php");
+        $mt = $rows["member_type"];
+        // echo $mt;
+        // header("location:Member_Dashboard.php");
+        // echo '<script>alert("Success");</script>';
 
-      if($mt == "Member")
-      {
-        header("location:Member/Member_Dashboard.php");
+        if ($mt == "Member") {
+          header("location:Member/Member_Dashboard.php");
+        } elseif ($mt == "Secretary") {
+          header("location:Secretary/Secretary_Dashboard.php");
+        } elseif ($mt == "President") {
+          header("location:President/President_Dashboard.php");
+        } elseif ($mt == "Spresident") {
+          header("location:SubPresident/SPresident_Dashboard.php");
+        } elseif ($mt == "Guard") {
+          header("location:Guard/Guard_Dashboard.php");
+        } else {
+          header("location:Home.php");
+        }
+      } else {
+        $err = "Invalid username or password!";
       }
-      elseif($mt == "Secretary")
-      {
-        header("location:Secretary/Secretary_Dashboard.php");  
-      }
-      elseif($mt == "President")
-      {
-        header("location:President/President_Dashboard.php");
-      }
-      elseif($mt == "Spresident")
-      {
-        header("location:SubPresident/SPresident_Dashboard.php");
-      }
-      elseif($mt == "Guard")
-      {
-        header("location:Guard/Guard_Dashboard.php");
-      }
-      else
-      {
-        header("location:Home.php");
-      }
-    } else {
-      $err = "Invalid username or password!";
     }
-  }
   }
   ?>
   <form id="lgForm" action="" method="POST">
@@ -122,8 +125,6 @@ include_once 'Footer.php';
         }
       }
     }
-
-   
   </script>
 
 </body>

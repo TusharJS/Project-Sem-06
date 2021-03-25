@@ -48,8 +48,6 @@ if ($_SESSION['mid'] == "") {
         body {
             background-color: #f7f2dfe7;
         }
-
-
     </style>
 
 </head>
@@ -59,7 +57,7 @@ if ($_SESSION['mid'] == "") {
     $w = $_SESSION['wing'];
     $f = $_SESSION['flat'];
 
-    echo $w.$f;
+    echo $w . $f;
 
     $result = mysqli_query($conn, "SELECT * from tbl_visitor_entry where flat=$f and wing='$w' and status='pending'");  ?>
     <form action="" method="POST">
@@ -83,11 +81,12 @@ if ($_SESSION['mid'] == "") {
                                     <th>Reject</th>
                                 </tr>
                             </thead>
-                            <?php
-                            $i = 1;
-                            while ($data = mysqli_fetch_array($result)) {
-                            ?>
-                                <tbody>
+
+                            <tbody>
+                                <?php
+                                $i = 1;
+                                while ($data = mysqli_fetch_array($result)) {
+                                ?>
                                     <tr>
                                         <th scope="row" style="padding-left: 10px;"><?php echo $i; ?></th>
                                         <td><?php echo $data['vname']; ?></td>
@@ -101,7 +100,7 @@ if ($_SESSION['mid'] == "") {
                                 } ?>
 
                                     </tr>
-                                </tbody>
+                            </tbody>
                         </table>
                     </div>
                 </div>
@@ -130,7 +129,7 @@ if ($_SESSION['mid'] == "") {
                 },
                 success: function(data) {
                     alert(data);
-                    location.reload();                    
+                    location.reload();
                 }
             });
 
@@ -147,7 +146,7 @@ if ($_SESSION['mid'] == "") {
                 },
                 success: function(data) {
                     alert('Rejected');
-                    location.reload();                    
+                    location.reload();
                 }
             });
         }

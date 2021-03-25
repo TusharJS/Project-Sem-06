@@ -1,3 +1,26 @@
+<?php 
+session_start();
+if (!empty($_SESSION)) {
+    $mt = $_SESSION["mbType"];
+    // echo $mt;
+    // header("location:Member_Dashboard.php");
+    // echo '<script>alert("Success");</script>';
+  
+    if ($mt == "Member") {
+      header("location:Member/Member_Dashboard.php");
+    } elseif ($mt == "Secretary") {
+      header("location:Secretary/Secretary_Dashboard.php");
+    } elseif ($mt == "President") {
+      header("location:President/President_Dashboard.php");
+    } elseif ($mt == "Spresident") {
+      header("location:SubPresident/SPresident_Dashboard.php");
+    } elseif ($mt == "Guard") {
+      header("location:Guard/Guard_Dashboard.php");
+    } else {
+      header("location:Home.php");
+    }
+  }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

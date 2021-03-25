@@ -4,20 +4,41 @@ include_once '../Connection.php';
 if ($_SESSION['mid'] == "") {
   header("location:../Home.php");
 }
+
+$q2 = "select *,count(*) from tbl_maintenance_status MS INNER JOIN tbl_maintenance MN ON MS.mnid = MN.mnid WHERE MS.mid = " . $_SESSION['mid'] . " and MN.year = '" . date('Y')."'";
+$sel2 = mysqli_query($conn, $q2);
+$data2 = mysqli_fetch_array($sel2);
+
+if (!empty($data2)) {
+  if ($data2['count(*)'] == 1) {
+    header("Location:Gold_Plan.php");
+  }
+
+  if ($data2['count(*)'] == 2) {
+    header("Location:Silver_Plan.php");
+  }
+  
+  if ($data2['count(*)'] == 3) {
+    header("Location:Bronze_Plan.php");
+  }
+}
 ?>
 <!DOCTYPE html>
 <html>
 
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+
   <style>
     * {
       box-sizing: border-box;
+      font-family: Raleway;
     }
 
     .content {
-      margin-left: 360px;
-      margin-top: 200px;
+      margin-left: 400px;
+      margin-top: 150px;
       width: 1200px;
     }
 
@@ -67,6 +88,29 @@ if ($_SESSION['mid'] == "") {
       font-size: 18px;
     }
 
+    .alert {
+      padding: 20px;
+      background-color: #ff9800;
+      color: white;
+      width: 900px;
+      height: fit-content;
+    }
+
+    .closebtn {
+      margin-left: 15px;
+      color: white;
+      font-weight: bold;
+      float: right;
+      font-size: 22px;
+      line-height: 20px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .closebtn:hover {
+      color: black;
+    }
+
     @media only screen and (max-width: 600px) {
       .columns {
         width: 100%;
@@ -76,40 +120,51 @@ if ($_SESSION['mid'] == "") {
 </head>
 
 <body>
-
-  <p style="text-align:center">Select your installment</p>
+  <?php
+  $query = "select * from tbl_maintenance where sid = " . $_SESSION['socid'] . " and wing = '" . $_SESSION['wing'] . "' and year = " . date('Y');
+  $sel = mysqli_query($conn, $query);
+  $data = mysqli_fetch_array($sel);
+  ?>
 
   <div class="content">
+    <h2 style="margin-left:310px;"><b>Select your installment</b></h2>
+    <div class="alert">
+      <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+      <strong>Warning:</strong>!</strong> Once you select any plan , it will not be change.
+    </div>
     <div class="columns">
       <ul class="price">
-        <li class="header" style="background-color:#4CAF50">Pro</li>
-        <li class="grey"> 30000 &#8377; / year</li>
+        <li class="header" style="background-color:#D2AC47">GOLD</li>
+        <li class="grey"> <?php echo $data['dis_12']; ?> &#8377; / year</li>
         <li>12 Months</li>
         <li>1 Installment</li>
-        <li class="grey"><a href="#" class="button">Pay</a></li>
+        <li class="grey"><a href="Gold_Plan.php" class="button" style="height:50px;">Select</a></li>
       </ul>
     </div>
 
     <div class="columns">
       <ul class="price">
-        <li class="header">Premium</li>
-        <li class="grey"> 33000 &#8377; / year</li>
+        <li class="header" style="background-color:#757575">SILVER</li>
+        <li class="grey"> <?php echo $data['dis_6']; ?> &#8377; / year</li>
         <li>6 Months</li>
         <li>2 Installments</li>
-        <li class="grey"><a href="#" class="button">Pay</a></li>
+        <li class="grey"><a href="#" class="button" style="height:50px;">Select</a></li>
       </ul>
     </div>
 
     <div class="columns">
       <ul class="price">
-        <li class="header">Basic</li>
-        <li class="grey"> 36000 &#8377; / year</li>
-        <li>3 Months</li>
-        <li>4 Installments</li>
-        <li class="grey"><a href="#" class="button">Pay</a></li>
+        <li class="header" style="background-color:#CD7F32">BRONZE</li>
+        <li class="grey"> <?php echo $data['dis_4']; ?> &#8377; / year</li>
+        <li>4 Months</li>
+        <li>3 Installments</li>
+        <li class="grey"><a href="#" class="button" style="height:50px;">Select</a></li>
+
       </ul>
+
     </div>
   </div>
+
 
 </body>
 
