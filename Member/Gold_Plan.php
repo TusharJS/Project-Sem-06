@@ -18,6 +18,10 @@ $data2 = mysqli_fetch_array($sel2);
 $q3 = "select * from tbl_maintenance where sid = ".$_SESSION['socid'] . " and year = ".date('Y');
 $sel3 = mysqli_query($conn,$q3);
 $data3 = mysqli_fetch_array($sel3);
+
+$q4 = "select * from tbl_maintenance_status MS INNER JOIN tbl_maintenance MN ON MS.mnid = MN.mnid where mid = ".$_SESSION['mid'] . " and MN.year = ".date('Y')." and MS.status = 'Paid'";
+$sel4 = mysqli_query($conn,$q4);
+$data4 = mysqli_fetch_array($sel4);
 ?>
 
 <!DOCTYPE html>
@@ -34,6 +38,9 @@ $data3 = mysqli_fetch_array($sel3);
 </style>
 </head>
 <?php
+if(empty($data4))
+{
+
 if (empty($data2)) {
     $q3 = "insert into tbl_maintenance_status (mnid,mid,installment) values (" . $data1['mnid'] . "," . $_SESSION['mid'] . ",1)";
     $ins = mysqli_query($conn, $q3); ?>
@@ -41,7 +48,7 @@ if (empty($data2)) {
     <!-- header("location:pay_gold.php"); -->
     <body>
 
-    <form action="pay_gold.php" method="POST">
+    <form action="Pay_Gold.php" method="POST">
     <script
     src="https://checkout.razorpay.com/v1/checkout.js"
     data-key="<?php echo $apiKey; ?>"  //Enter the Test API Key ID generated from Dashboard → Settings → API Keys
@@ -71,7 +78,7 @@ else{ ?>
     <!-- header("location:pay_gold.php"); -->
     <body>
 
-    <form action="pay_gold.php" method="POST">
+    <form action="Pay_Gold.php" method="POST">
     <script
     src="https://checkout.razorpay.com/v1/checkout.js"
     data-key="<?php echo $apiKey; ?>"  //Enter the Test API Key ID generated from Dashboard → Settings → API Keys
@@ -96,4 +103,9 @@ else{ ?>
         });
     </script>
     </body>
-<?php } ?>
+<?php } 
+}else
+{
+    header("location:Pay_Gold.php");
+}
+?>

@@ -15,7 +15,7 @@ if (!empty($data2)) {
   }
 
   if ($data2['count(*)'] == 2) {
-    header("Location:Silver_Plan.php");
+    header("Location:Select_Silver.php");
   }
   
   if ($data2['count(*)'] == 3) {
@@ -148,7 +148,7 @@ if (!empty($data2)) {
         <li class="grey"> <?php echo $data['dis_6']; ?> &#8377; / year</li>
         <li>6 Months</li>
         <li>2 Installments</li>
-        <li class="grey"><a href="#" class="button" style="height:50px;">Select</a></li>
+        <li class="grey"><a href="Select_Silver.php" class="button" style="height:50px;">Select</a></li>
       </ul>
     </div>
 
@@ -158,7 +158,7 @@ if (!empty($data2)) {
         <li class="grey"> <?php echo $data['dis_4']; ?> &#8377; / year</li>
         <li>4 Months</li>
         <li>3 Installments</li>
-        <li class="grey"><a href="#" class="button" style="height:50px;">Select</a></li>
+        <li class="grey"><a href="Select_Bronze.php" class="button" style="height:50px;">Select</a></li>
 
       </ul>
 
