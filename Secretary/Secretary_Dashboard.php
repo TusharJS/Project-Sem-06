@@ -62,12 +62,8 @@
                 <?php if(empty($data['mnid'])){?>               
 				<li><a href="Manage_Maintenance.php"><em class="fa fa-wrench"></em>Manage Maintenance</a></li><?php }?>
 				<li><a href="Add_Committee.php"><em class="fa fa-users"></em>Manage Expenses</a></li>
-				<!-- <li><a href="New_Password.php"><em class="fa fa fa-key"></em> Change Password</a></li> -->
-				<li><a href="Send_Notice.php"><em class="fa fa-bell"></em> Send Notice</a></li>
-				<!-- <li><a href="Manage_Guard.php"><em class="fa fa-shield"></em> Manage Guard</a></li> -->
-				<!-- <li><a href="#tables"><em class="fa fa-table"></em> Tables</a></li> -->
-				<!-- <li><a href="#grid"><em class="fa fa-columns"></em> Grid</a></li> -->
-				<li><a href="../Logout.php"><em class="fa fa-columns"></em> Logout </a></li>
+				<li><a href="Service_Provider.php"><em class="fa fa fa-wrench"></em> Add Service Provider</a></li>
+				<li><a href="../Logout.php"><em class="fa fa-sign-out"></em> Logout </a></li>
 
 			</ul>
 		</div>

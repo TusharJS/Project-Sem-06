@@ -130,7 +130,7 @@ if (!empty($data2)) {
     <h2 style="margin-left:310px;"><b>Select your installment</b></h2>
     <div class="alert">
       <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-      <strong>Warning:</strong>!</strong> Once you select any plan , it will not be change.
+      <strong>Warning:!</strong> Once you select any plan , it will not be change.
     </div>
     <div class="columns">
       <ul class="price">

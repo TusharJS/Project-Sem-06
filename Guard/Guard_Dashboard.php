@@ -58,7 +58,7 @@
 				<li><a href="Manage_GP.php"><em class="fa fa-user-plus"></em>Manage Gatepass</a></li>
 				<li><a href="Address_Book.php"><em class="fa fa-address-card"></em>Address Book</a></li>
 				<li><a href="VEntry_Request.php"><em class="fas fa-door-open"></em> Visitor Entry Request</a></li>
-				<li><a href="<?php echo $LogOut; ?>"><em class="fa fa-columns"></em> Logout </a></li>
+				<li><a href="<?php echo $LogOut; ?>"><em class="fa fa-sign-out"></em> Logout </a></li>
 
 			</ul>
 		</div>

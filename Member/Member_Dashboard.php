@@ -86,7 +86,7 @@
 				<li><a href="Visitor_Entry.php"><em class="fa fa-ban"></em> Manage Visitor Entry</a></li>
 				<li><a href="View_Visitor.php"><em class="fa fa-eye"></em> View Visitor</a></li>
 				<li><a href="Pay_Maintenance.php"><em class="fa fa-wrench"></em> Pay Maintenance</a></li>
-				<li><a href="<?php echo $LogOut; ?>"><em class="fa fa-columns"></em> Logout </a></li>
+				<li><a href="<?php echo $LogOut; ?>"><em class="fa fa-sign-out"></em> Logout </a></li>
 
 			</ul>
 		</div>
