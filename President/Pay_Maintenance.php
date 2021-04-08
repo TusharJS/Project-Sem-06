@@ -96,14 +96,6 @@ if (!empty($data2)) {
       height: fit-content;
     }
 
-    .alert2 {
-      padding: 20px;
-      background-color: #17a2b8;
-      color: white;
-      width: 900px;
-      height: fit-content;
-    }
-
     .closebtn {
       margin-left: 15px;
       color: white;
@@ -132,9 +124,6 @@ if (!empty($data2)) {
   $query = "select * from tbl_maintenance where sid = " . $_SESSION['socid'] . " and wing = '" . $_SESSION['wing'] . "' and year = " . date('Y');
   $sel = mysqli_query($conn, $query);
   $data = mysqli_fetch_array($sel);
-  
-  if(!empty($data))
-  {
   ?>
 
   <div class="content">
@@ -175,13 +164,7 @@ if (!empty($data2)) {
 
     </div>
   </div>
-<?php } 
-else{
-  echo "<div class='alert2 content'>
-    <strong>Notice :</strong> Please wait , to update maintenance amount by your president.
-</div>";
-}
-?>
+
 
 </body>
 

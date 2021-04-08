@@ -72,7 +72,7 @@
         $q = "delete from tbl_service_provider where spid = $id";
         mysqli_query($conn,$q);   
     }
-
+    
     if(strcmp($action,"approve_ve") == 0)
     {
         $q = "update tbl_visitor_entry set status = 'Approved' where veid = $id";

@@ -20,10 +20,14 @@
 	<link rel="stylesheet" href="../css/normalize.css">
 	<link rel="stylesheet" href="../css/milligram.min.css">
 	<link rel="stylesheet" href="../css/styles.css">
+	<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 
 	
 	<style>
+		*{
+			font-family:Raleway;
+		}
 	</style>
 
 	<!--[if lt IE 9]>

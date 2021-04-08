@@ -1,7 +1,7 @@
 body {
   background: #f9f9f9;
   height: 100%;
-  width: 100%;
+  /* width: 100%; */
   overflow-x: hidden;
   font-size: 1.6em;
   font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;

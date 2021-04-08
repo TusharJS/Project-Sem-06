@@ -1,7 +1,7 @@
 <?php 
     // session_start();
     include_once '../Connection.php';
-    include_once 'President_Dashboard.php';
+    include_once 'SPresident_Dashboard.php';
     include_once '../validation.php';
     if($_SESSION['mid'] == "")
     {

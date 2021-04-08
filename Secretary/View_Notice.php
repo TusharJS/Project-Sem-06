@@ -1,6 +1,7 @@
 <?php
 // session_start();
-include_once 'Member_Dashboard.php';
+
+include_once 'Secretary_Dashboard.php';
 include_once '../Connection.php';
 include_once '../validation.php';
 include_once '../links.php';

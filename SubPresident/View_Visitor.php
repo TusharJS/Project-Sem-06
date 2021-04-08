@@ -1,7 +1,7 @@
 <?php
 // session_start();
 include_once '../Connection.php';
-include_once 'Guard_Dashboard.php';
+include_once 'SPresident_Dashboard.php';
 
 if ($_SESSION['mid'] == "") {
     header("location:../Home.php");
@@ -46,7 +46,7 @@ if ($_SESSION['mid'] == "") {
             width: 1200px;
         }
 
-        #user {
+        #user{
             margin-top: -40px;
         }
     </style>
@@ -55,14 +55,25 @@ if ($_SESSION['mid'] == "") {
 
 <body>
     <?php
+    $mid = $_SESSION['mid'];
+    $w = $_SESSION['wing'];
+    $f = $_SESSION['flat'];
 
-    $result = mysqli_query($conn, "select V.vname,V.date,V.time,V.description,M.wing,M.flat,V.image from tbl_visitor V INNER JOIN tbl_member M ON V.mid=M.mid where V.mid IN (select mid from tbl_member where sid = " . $_SESSION['socid'] . ") ORDER BY V.vid DESC");  ?>
 
+    $result = mysqli_query($conn, "SELECT * From tbl_visitor_entry where wing='$w' and flat=$f");  ?>
+    <?php
+    // $w = $_SESSION['wing'];
+    // $f = $_SESSION['flat'];
+
+    // echo $w . $f;
+
+    // $result = mysqli_query($conn, "SELECT * from tbl_visitor_entry where flat=$f and wing='$w' and status='pending'");  
+    ?>
     <div class="row grid-responsive" id="tbl">
         <div class="column ">
             <div class="card">
                 <div class="card-title">
-                    <h3>Visitor Gatepass</h3>
+                    <h3>Visitor Log</h3>
                 </div>
                 <div class="card-block">
                     <table id="UserTable">
@@ -70,16 +81,13 @@ if ($_SESSION['mid'] == "") {
                             <tr>
                                 <th scope="col" style="padding-left: 5px;">#</th>
                                 <th>Name</th>
-                                <th>Date</th>
-                                <th>Time</th>
+                                <th>Phone</th>
                                 <th>Description</th>
-                                <th>Wing</th>
-                                <th>Flat</th>
+                                <th>Date-Time</th>
                                 <th>Image</th>
                             </tr>
                         </thead>
                         <tbody>
-
                             <?php
                             $i = 1;
                             while ($data = mysqli_fetch_array($result)) {
@@ -87,11 +95,9 @@ if ($_SESSION['mid'] == "") {
                                 <tr>
                                     <th scope="row" style="padding-left: 10px;"><?php echo $i; ?></th>
                                     <td><?php echo $data['vname']; ?></td>
-                                    <td><?php echo $data['date']; ?></td>
-                                    <td><?php echo $data['time']; ?></td>
+                                    <td><?php echo $data['phone']; ?></td>
                                     <td><?php echo $data['description']; ?></td>
-                                    <td><?php echo $data['wing']; ?></td>
-                                    <td><?php echo $data['flat']; ?></td>
+                                    <td><?php echo $data['datetime']; ?></td>
                                     <td style=" width: 150px; height: 200;"><img src="../Image/user/<?php echo $data['image']; ?>"></td>
                                 <?php $i++;
                             } ?>
@@ -107,9 +113,7 @@ if ($_SESSION['mid'] == "") {
     </table>
     <script>
         $(document).ready(function() {
-            $('#UserTable').DataTable({
-                "searching": true
-            });
+            $('#UserTable').DataTable();
         });
     </script>
 

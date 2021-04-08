@@ -28,8 +28,12 @@
 	<link rel="stylesheet" href="../css/normalize.css">
 	<link rel="stylesheet" href="../css/milligram.min.css">
 	<link rel="stylesheet" href="../css/styles.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	
 	<style>
+		*{
+			font-family:Raleway;
+		}
 	</style>
 
 	<!--[if lt IE 9]>

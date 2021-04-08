@@ -1,4 +1,5 @@
 <?php
+ob_start();
 // session_start();
 
 include_once 'Guard_Dashboard.php';
@@ -122,7 +123,7 @@ if ($_SESSION['mid'] == "") {
                 echo "<script type='text/javascript'>
                 toastr.success('Request sent Successfully.');
                 </script>";
-                header("location:Guard_Dashboard.php");
+                header("location:VEntry_Request.php");
             }
         }
     }
@@ -336,3 +337,4 @@ if ($_SESSION['mid'] == "") {
 </body>
 
 </html>
+<?php ob_flush(); ?>
