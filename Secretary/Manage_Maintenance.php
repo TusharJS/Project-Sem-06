@@ -106,7 +106,7 @@ include_once 'Secretary_Dashboard.php';
         <h3><b style="color:#35cebe;">Manage Maintenance</b></h3>
         <div class="alert">
             <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-            <strong>Danger!</strong> Once you add , it willn't change.
+            <strong>Warning!</strong> Once you add , it willn't change.
         </div>
         Year :<input type="number" name="year" id="year" placeholder="YYYY" min="2021" max="2100">
 

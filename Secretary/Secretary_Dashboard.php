@@ -64,6 +64,7 @@ $data = mysqli_fetch_array($sel);
 				<li class="PF"><a href="Manage_Maintenance.php"><em class="fa fa-wrench"></em>Manage Maintenance</a></li><?php } ?>
 				<li class="PF"><a href="Add_Committee.php"><em class="fa fa-users"></em>Manage Expenses</a></li>
 				<li class="PF"><a href="Service_Provider.php"><em class="fa fa fa-wrench"></em> Add Service Provider</a></li>
+				<li class="PF"><a href="Maintenance_Report.php"><em class="fa fa-lock"></em> Maintenance Report</a></li>
 			</ul>
 			<a href="#" id="d2">
 				<h5>Member Features &nbsp;&nbsp;&nbsp;&nbsp; ></h5>

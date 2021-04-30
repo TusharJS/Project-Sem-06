@@ -12,13 +12,23 @@ $q1 = "select count(*) from tbl_maintenance_status MS INNER JOIN tbl_maintenance
 $sel1 = mysqli_query($conn, $q1);
 $data1 = mysqli_fetch_array($sel1);
 
+// echo '<!DOCTYPE html>
+// <html lang="en">
+// <head>
+//     <meta charset="UTF-8">
+//     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+//     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+//     <title>Document</title>
+// </head>
+// <body>';
+    
 
 if ($data1['count(*)'] == '0') {
-    echo  $_SESSION['mid'];
-    $q = "update tbl_maintenance_status MS INNER JOIN tbl_maintenance MN ON MS.mnid = MN.mnid set MS.payment_id = '" . $_POST['razorpay_payment_id'] . "' , MS.status = 'Paid' , datetime = CURRENT_TIMESTAMP where MS.mid = " . $_SESSION['mid'] ." and  MN.year = '".date('Y');
+    // echo  $_SESSION['mid'];
+    $q = "update tbl_maintenance_status MS INNER JOIN tbl_maintenance MN ON MS.mnid = MN.mnid set MS.payment_id = '" . $_POST['razorpay_payment_id'] . "' , MS.status = 'Paid' , datetime = CURRENT_TIMESTAMP where MS.mid = " . $_SESSION['mid'] ." and  MN.year = '".date('Y')."'";
     mysqli_query($conn, $q);
 
-    echo "<script>location.reload();</script>";
+    // echo "<script>location.reload();</script>";
     $q1 = "select MS.payment_id,MS.datetime,M.mname,MN.dis_12,S.sname from tbl_maintenance_status MS INNER JOIN tbl_maintenance MN ON MS.mnid = MN.mnid INNER JOIN tbl_Member M ON MS.mid = M.mid INNER JOIN tbl_society S ON MN.sid = S.sid WHERE MS.mid = " . $_SESSION['mid'];
     $sel = mysqli_query($conn, $q1);
     $data_member = mysqli_fetch_array($sel);
@@ -28,7 +38,7 @@ if ($data1['count(*)'] == '0') {
     $pdf->AddPage();
     $pdf->SetFont('Arial', '', 25);
 
-    $pdf->Cell(190, 30, 'Maintenance Receipt 1', 1, 1, 'C');
+    $pdf->Cell(190, 30, 'Maintenance Receipt', 1, 1, 'C');
     $pdf->Cell(90, 20, 'Name                  : ', 0, 0, 'C');
     $pdf->Cell(90, 20, ''.$data_member["mname"], 0, 1, 'C');
 
@@ -56,6 +66,7 @@ if ($data1['count(*)'] == '0') {
     $pdf->Ln(51);
     $pdf->Cell(190, 30, 'MY SOCIETY', 0, 1, 'C');
 
+    // echo '<embed src= "$pdf->Output()" width= "500" height= "375" style="margin-left: 50px; margin-bottom: 50px; margin-top: 50px;">';
     $pdf->Output();
 } else {
     $q1 = "select MS.payment_id,MS.datetime,M.mname,MN.dis_12,S.sname from tbl_maintenance_status MS INNER JOIN tbl_maintenance MN ON MS.mnid = MN.mnid INNER JOIN tbl_Member M ON MS.mid = M.mid INNER JOIN tbl_society S ON MN.sid = S.sid WHERE MS.mid = " . $_SESSION['mid'];
@@ -96,4 +107,8 @@ if ($data1['count(*)'] == '0') {
     $pdf->Cell(190, 30, 'MY SOCIETY', 0, 1, 'C');
 
     $pdf->Output();
+    // echo '<embed src= "$pdf->Output()" width= "500" height= "375" style="margin-left: 50px; margin-bottom: 50px; margin-top: 50px;">';
+
 }
+// echo '</body>
+// </html>';

@@ -1,4 +1,6 @@
-<?php include_once 'Member_Dashboard.php';
+<?php 
+ob_start();
+include_once 'Member_Dashboard.php';
 include_once '../Connection.php';
 
 if ($_SESSION['mid'] == "") {
@@ -108,4 +110,5 @@ else{ ?>
 {
     header("location:Pay_Gold.php");
 }
+ob_flush();
 ?>

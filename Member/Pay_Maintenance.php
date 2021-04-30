@@ -1,4 +1,4 @@
-<?php include_once 'President_Dashboard.php';
+<?php include_once 'Member_Dashboard.php';
 include_once '../Connection.php';
 
 if ($_SESSION['mid'] == "") {
