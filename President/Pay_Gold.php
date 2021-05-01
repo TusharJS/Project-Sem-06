@@ -15,7 +15,7 @@ $data1 = mysqli_fetch_array($sel1);
 
 if ($data1['count(*)'] == '0') {
     echo  $_SESSION['mid'];
-    $q = "update tbl_maintenance_status MS INNER JOIN tbl_maintenance MN ON MS.mnid = MN.mnid set MS.payment_id = '" . $_POST['razorpay_payment_id'] . "' , MS.status = 'Paid' , datetime = CURRENT_TIMESTAMP where MS.mid = " . $_SESSION['mid'] ." and  MN.year = '".date('Y');
+    $q = "update tbl_maintenance_status MS INNER JOIN tbl_maintenance MN ON MS.mnid = MN.mnid set MS.payment_id = '" . $_POST['razorpay_payment_id'] . "' , MS.status = 'Paid' , datetime = CURRENT_TIMESTAMP where MS.mid = " . $_SESSION['mid'] ." and  MN.year = '".date('Y')."'";
     mysqli_query($conn, $q);
 
     echo "<script>location.reload();</script>";
