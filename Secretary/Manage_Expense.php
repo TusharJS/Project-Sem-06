@@ -77,28 +77,18 @@ if ($_SESSION['mid'] == "") {
 
 <body>
     <?php
-    if (isset($_REQUEST['btnAdd_Guard_in'])) {
-        $name = $_REQUEST['name'];
-        $phone = $_REQUEST['contact'];
-        $sid = $_SESSION['socid'];
-        $service = $_REQUEST['service'];
+    if (isset($_REQUEST['btnAdd'])) {
+        $date = $_REQUEST['date'];
+        $desc = $_REQUEST['desc'];
+        $mid = $_SESSION['mid'];
+        $amo = $_REQUEST['amo'];
 
-        // if (sel_email($email)) {
-        //     echo "<script type='text/javascript'>
-        //         $(document).ready(function(){
-        //         $('#exampleModal').modal('show');
-        //         });
-
-        //         toastr.error('Email is Already Exists.');
-        //     </script>";
-        //     // goto start;
-        // } else {
-            $query = "insert into tbl_service_provider (sid,spname,phone,service) values ($sid,'$name','$phone','$service')";
+            $query = "insert into tbl_expense (mid,date,description,amount) values ($mid,'$date','$desc','$amo')";
             $insert = mysqli_query($conn, $query);
             
-            header("location:Service_Provider.php");
+            header("location:Manage_Expense.php");
             echo "<script type='text/javascript'>
-            toastr.success('Service Provider Added Successfully.');
+            toastr.success('Expense Added Successfully.');
             </script>";
         // }
     }
@@ -108,15 +98,15 @@ if ($_SESSION['mid'] == "") {
 
     <?php
     $w = $_SESSION['wing'];
-    $s = $_SESSION['socid'];
+    $m = $_SESSION['mid'];
 
-    $result = mysqli_query($conn, "SELECT * From tbl_service_provider where sid='$s'");  ?>
+    $result = mysqli_query($conn, "SELECT * From tbl_expense where mid='$m'"); ?>
     <div class="row grid-responsive" id="tbl">
         <div class="column ">
             <div class="card">
                 <div class="card-title">
-                    <button type="button" id="btnAdd_Guard_out" data-toggle="modal" data-target="#exampleModal" style="float: right; margin-bottom:0px;">Add Service Provider</button>
-                    <h3>Service Provider</h3>
+                    <button type="button" id="btnAdd_out" data-toggle="modal" data-target="#exampleModal" style="float: right; margin-bottom:0px;">Add Expense</button>
+                    <h3>All Expenses</h3>
                 </div>
                 <div class="card-block">
                     <table id="UserTable">
@@ -141,7 +131,7 @@ if ($_SESSION['mid'] == "") {
                                     <?php //$mid = $data['mid']; 
                                     ?>
                                     <td><?php echo $data['date']; ?></td>
-                                    <td><?php echo $data['desc']; ?></td>
+                                    <td><?php echo $data['description']; ?></td>
                                     <td><?php echo $data['amount']; ?></td>
                                     <!-- <td><?php //echo '<img src="Image/user/' . $data['image'] . ' )."/>'; 
                                                 ?></td> -->
@@ -170,8 +160,8 @@ if ($_SESSION['mid'] == "") {
                 <div class="modal-body">
                     <form action="" method="POST" name="agform" id="agform" onsubmit="return validateForm()" novalidate>
                         <div class="form-group">
-                            <label for="recipient-name" class="col-form-label">Date</label>:</label>
-                            <input type="date" min="<?php echo date("Y-m-d"); ?>" placeholder="Select Date..." name="date" id="date">
+                            <label for="recipient-name" class="col-form-label">Date:</label></label>
+                            <input type="date" min="<?php echo date('Y'); ?>" placeholder="Select Date..." name="date" id="date">
                             <label for="" class="col-form-label">Description:</label>
                             <textarea rows="5" name="desc" id="desc" placeholder="Enter Description here..."></textarea>
                             <label for="recipient-name" class="col-form-label">Amount:</label>
@@ -256,7 +246,7 @@ if ($_SESSION['mid'] == "") {
 
             if(amo == "" || amo <= 0)
             {
-                toastr.error('Please Enter description');
+                toastr.error('Please Enter Valid Amount.');
                 err = true;
             }
 

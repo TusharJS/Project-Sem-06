@@ -3,7 +3,7 @@ include_once 'Connection.php';
 include_once 'Header.php';
 include_once 'Footer.php';
 
-if (!empty($_SESSION)) {
+if (!empty($_SESSION['mid'])) {
   $mt = $_SESSION["mbType"];
   // echo $mt;
   // header("location:Member_Dashboard.php");
@@ -43,7 +43,7 @@ if (!empty($_SESSION)) {
   $err = "";
   if (isset($_REQUEST['btnLogin'])) {
 
-    if (!empty($_SESSION)) {
+    if (!empty($_SESSION['mid'])) {
       $err = "Already one user is logged in.";
     } else {
 

@@ -201,7 +201,7 @@ if ($_SESSION['mid'] == "") {
                         </div>
                         <div class="tab" style="margin-bottom: 15px;">Wing:<br>
                             <select name="wing" id="wing_dropdown">
-                                <!-- <option>--  SELECT WING  --</option> -->
+                                <option>--  SELECT WING  --</option>
                                 <?php
                                 $records = mysqli_query($conn, "SELECT DISTINCT(wing) From tbl_member where sid=" . $_SESSION["socid"]);  // Use select query here
 
@@ -214,7 +214,7 @@ if ($_SESSION['mid'] == "") {
 
                         <div class="tab" style="margin-bottom: 15px;">Select Flat:<br>
                             <select name="flat" id="flat_dropdown" onselect="myFunction()">
-                                <!-- <option>--  SELECT FLAT  --</option> -->
+                                <option>--  SELECT FLAT  --</option>
                             </select>
                         </div>
                         <div class="tab">Description:
@@ -255,7 +255,7 @@ if ($_SESSION['mid'] == "") {
                     },
                     success: function(result) {
                         // alert(result);
-                        var str = "<option value=''>SELECT WING</option>";
+                        var str = "<option value=''>SELECT FLAT</option>";
                         $.each(result, function(key, value) {
                             str = str + "<option value='" + value.flat + "'>" + value.flat + "</option>";
                         });

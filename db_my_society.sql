@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 25, 2021 at 10:08 AM
+-- Generation Time: May 01, 2021 at 10:48 AM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.7
 
@@ -32,8 +32,16 @@ CREATE TABLE `tbl_admin` (
   `aname` varchar(20) NOT NULL,
   `phone` varchar(10) NOT NULL,
   `emailid` varchar(30) NOT NULL,
-  `password` varchar(32) NOT NULL
+  `password` varchar(32) NOT NULL,
+  `image` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_admin`
+--
+
+INSERT INTO `tbl_admin` (`aid`, `aname`, `phone`, `emailid`, `password`, `image`) VALUES
+(1, 'Tushar S', '8956238956', 'tusharsavaliya4444@gmail.com', 'ca2b46b4960815fa27f334a13299b552', 'download.png');
 
 -- --------------------------------------------------------
 
@@ -91,6 +99,29 @@ INSERT INTO `tbl_city` (`cid`, `stid`, `cname`) VALUES
 (66, 9, 'South Delhi'),
 (67, 9, 'South West Delhi'),
 (68, 9, 'West Delhi');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_expense`
+--
+
+CREATE TABLE `tbl_expense` (
+  `eid` int(11) NOT NULL,
+  `mid` int(11) NOT NULL,
+  `date` date NOT NULL,
+  `description` varchar(50) NOT NULL,
+  `amount` decimal(10,0) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_expense`
+--
+
+INSERT INTO `tbl_expense` (`eid`, `mid`, `date`, `description`, `amount`) VALUES
+(1, 118, '2021-05-01', 'lightning', '12000'),
+(2, 118, '2021-05-22', 'suage', '1500'),
+(3, 2, '2021-05-01', 'janmashtami', '10000');
 
 -- --------------------------------------------------------
 
@@ -153,9 +184,7 @@ CREATE TABLE `tbl_maintenance` (
 --
 
 INSERT INTO `tbl_maintenance` (`mnid`, `sid`, `wing`, `year`, `amount`, `dis_12`, `dis_6`, `dis_4`) VALUES
-(1, 2, 'A', 2021, '10000', '5', '2', '0'),
-(2, 1, 'A', 2021, '10000', '9500', '9800', '10000'),
-(3, 2, 'A', 2021, '10000', '9500', '9800', '10000');
+(2, 2, 'A', 2021, '10000', '9500', '9800', '10000');
 
 -- --------------------------------------------------------
 
@@ -172,6 +201,14 @@ CREATE TABLE `tbl_maintenance_status` (
   `status` varchar(15) NOT NULL DEFAULT 'pending',
   `datetime` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_maintenance_status`
+--
+
+INSERT INTO `tbl_maintenance_status` (`msid`, `mnid`, `mid`, `installment`, `payment_id`, `status`, `datetime`) VALUES
+(7, 2, 24, 1, 'pay_H539oZAmmwAsmA', 'Paid', '2021-04-30 12:58:18'),
+(11, 2, 118, 1, 'pay_H58U9Zwwj5ypyj', 'Paid', '2021-04-30 18:11:01');
 
 -- --------------------------------------------------------
 
@@ -212,10 +249,10 @@ INSERT INTO `tbl_member` (`mid`, `sid`, `mname`, `phone`, `wing`, `flat`, `image
 (120, 1, 'guard djA', '8866691451', 'A', 1, 'user.jpg', 'guard2@gmail.com', 'ca2b46b4960815fa27f334a13299b552', 'Guard', 'Approved', '2021-03-20 17:11:17'),
 (121, 1, 'Jaggu Bhai', '8586896523', 'A', 1, 'user.jpg', 'guard3@gmail.com', 'ca2b46b4960815fa27f334a13299b552', 'Guard', 'Approved', '2021-03-20 17:14:52'),
 (122, 1, 'Pappu bhai', '8998989898', 'A', 1, 'user.jpg', 'guard4@gmail.com', 'ca2b46b4960815fa27f334a13299b552', 'Guard', 'Approved', '2021-03-20 17:16:08'),
-(123, 1, 'member B', '8238529241', 'A', 5, 'user1.jpg', 'member2@djv.com', 'ca2b46b4960815fa27f334a13299b552', 'Member', 'Approved', '2021-03-22 00:22:55'),
 (124, 1, 'member B', '6956985785', 'B', 5, 'images.png', 'wehog75743@leonvero.com', 'ca2b46b4960815fa27f334a13299b552', 'Member', 'pending', '2021-03-22 23:40:16'),
 (125, 1, 'member D', '8866691451', 'B', 12, 'images.png', 'hisosec558@990ys.com', 'ca2b46b4960815fa27f334a13299b552', 'Member', 'pending', '2021-03-23 11:47:03'),
-(126, 1, 'sanket desai', '8866691451', 'c', 45, 'user1813.jpg', 'sp2@gmail.com', 'ca2b46b4960815fa27f334a13299b552', 'Spresident', 'Approved', '2021-03-25 01:30:23');
+(126, 1, 'sanket desai', '8866691451', 'c', 45, 'user1813.jpg', 'sp2@gmail.com', 'ca2b46b4960815fa27f334a13299b552', 'Spresident', 'Approved', '2021-03-25 01:30:23'),
+(130, 9, 'mayur togadiya', '9205312459', 'A', 35, 'images.png', '5a9dd087ca@firemailbox.club', 'ca2b46b4960815fa27f334a13299b552', 'Member', 'pending', '2021-05-01 14:14:54');
 
 -- --------------------------------------------------------
 
@@ -238,6 +275,27 @@ INSERT INTO `tbl_notice` (`nid`, `mid`, `message`, `notice_date`) VALUES
 (6, 1, 'notice 1', '2021-03-22 02:38:43'),
 (7, 1, 'this is notice 2', '2021-03-22 03:15:14'),
 (8, 117, 'notice by sp', '2021-03-23 14:39:55');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_service_provider`
+--
+
+CREATE TABLE `tbl_service_provider` (
+  `spid` int(11) NOT NULL,
+  `sid` int(11) NOT NULL,
+  `spname` varchar(50) NOT NULL,
+  `phone` varchar(10) NOT NULL,
+  `service` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_service_provider`
+--
+
+INSERT INTO `tbl_service_provider` (`spid`, `sid`, `spname`, `phone`, `service`) VALUES
+(1, 2, 'rohan', '8586896523', 'tv repairer');
 
 -- --------------------------------------------------------
 
@@ -269,11 +327,8 @@ INSERT INTO `tbl_society` (`sid`, `sname`, `address`, `pincode`, `lid`, `cid`, `
 (6, 'soc1', 'rajkot nagar road', 235689, 3, 52, 12, 1, 0),
 (9, 'Surykiran', 'B/h kalakunj society', 395006, 1, 54, 12, 1, 0),
 (10, 'Hariom', 'B/h kalakunj society', 395006, 1, 54, 12, 1, 0),
-(11, 'Hariom', 'B/h kalakunj society', 395006, 1, 54, 12, 1, 0),
 (12, 'swaminarayan nagar 1', 'B/h kalakunj society', 395006, 1, 54, 12, 1, 0),
-(13, 'swaminarayan nagar 1', 'B/h kalakunj society', 395006, 1, 54, 12, 1, 0),
 (14, 'gajanand', 'Near Shri Swaminarayan Temple Kalakunj', 395006, 1, 54, 12, 1, 0),
-(15, 'gajanand', 'Near Shri Swaminarayan Temple Kalakunj', 395006, 1, 54, 12, 1, 0),
 (16, 'soc2', 'B/h kalakunj society', 395006, 3, 52, 12, 1, 0),
 (17, 'soc3', 'B/h kalakunj society', 395006, 5, 52, 12, 1, 0),
 (18, 'soc4', 'near patel faliyu', 395569, 8, 52, 12, 1, 0),
@@ -407,6 +462,13 @@ ALTER TABLE `tbl_city`
   ADD KEY `stid` (`stid`);
 
 --
+-- Indexes for table `tbl_expense`
+--
+ALTER TABLE `tbl_expense`
+  ADD PRIMARY KEY (`eid`),
+  ADD KEY `mid` (`mid`);
+
+--
 -- Indexes for table `tbl_landmark`
 --
 ALTER TABLE `tbl_landmark`
@@ -439,6 +501,13 @@ ALTER TABLE `tbl_member`
 ALTER TABLE `tbl_notice`
   ADD PRIMARY KEY (`nid`),
   ADD KEY `mid` (`mid`);
+
+--
+-- Indexes for table `tbl_service_provider`
+--
+ALTER TABLE `tbl_service_provider`
+  ADD PRIMARY KEY (`spid`),
+  ADD KEY `sid` (`sid`);
 
 --
 -- Indexes for table `tbl_society`
@@ -475,13 +544,19 @@ ALTER TABLE `tbl_visitor_entry`
 -- AUTO_INCREMENT for table `tbl_admin`
 --
 ALTER TABLE `tbl_admin`
-  MODIFY `aid` int(6) NOT NULL AUTO_INCREMENT;
+  MODIFY `aid` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tbl_city`
 --
 ALTER TABLE `tbl_city`
   MODIFY `cid` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
+
+--
+-- AUTO_INCREMENT for table `tbl_expense`
+--
+ALTER TABLE `tbl_expense`
+  MODIFY `eid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tbl_landmark`
@@ -499,19 +574,25 @@ ALTER TABLE `tbl_maintenance`
 -- AUTO_INCREMENT for table `tbl_maintenance_status`
 --
 ALTER TABLE `tbl_maintenance_status`
-  MODIFY `msid` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `msid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `tbl_member`
 --
 ALTER TABLE `tbl_member`
-  MODIFY `mid` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=127;
+  MODIFY `mid` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=131;
 
 --
 -- AUTO_INCREMENT for table `tbl_notice`
 --
 ALTER TABLE `tbl_notice`
   MODIFY `nid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `tbl_service_provider`
+--
+ALTER TABLE `tbl_service_provider`
+  MODIFY `spid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tbl_society`
@@ -548,6 +629,12 @@ ALTER TABLE `tbl_city`
   ADD CONSTRAINT `tbl_city_ibfk_1` FOREIGN KEY (`stid`) REFERENCES `tbl_state` (`stid`);
 
 --
+-- Constraints for table `tbl_expense`
+--
+ALTER TABLE `tbl_expense`
+  ADD CONSTRAINT `tbl_expense_ibfk_1` FOREIGN KEY (`mid`) REFERENCES `tbl_member` (`mid`);
+
+--
 -- Constraints for table `tbl_landmark`
 --
 ALTER TABLE `tbl_landmark`
@@ -570,6 +657,12 @@ ALTER TABLE `tbl_member`
 --
 ALTER TABLE `tbl_notice`
   ADD CONSTRAINT `tbl_notice_ibfk_1` FOREIGN KEY (`mid`) REFERENCES `tbl_member` (`mid`);
+
+--
+-- Constraints for table `tbl_service_provider`
+--
+ALTER TABLE `tbl_service_provider`
+  ADD CONSTRAINT `tbl_service_provider_ibfk_1` FOREIGN KEY (`sid`) REFERENCES `tbl_society` (`sid`);
 
 --
 -- Constraints for table `tbl_society`

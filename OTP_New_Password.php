@@ -1,4 +1,5 @@
 <?php 
+ob_start();
 session_start();
     include_once 'Connection.php';
     include_once 'Header.php';
@@ -31,9 +32,9 @@ session_start();
             {
                
                   $np = $_REQUEST['npass'];
-                  $q = "update tbl_member set password = md5('$np') where email=".$_SESSION['femail'];  
+                  $q = "update tbl_member set password = md5('$np') where email= ".$_SESSION['femail'];  
                   echo '<script>alert("Password Updated Successfully!!!");</script>';
-                    header("location:Login.php");
+                  // header("location:Login.php");
             }
                 
                   
@@ -57,3 +58,4 @@ session_start();
 
 </body>
 </html>
+<?php ob_flush(); ?> 

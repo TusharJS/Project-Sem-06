@@ -1,4 +1,5 @@
 <?php
+ob_start();
 // session_start();
 
 include_once 'President_Dashboard.php';
@@ -93,12 +94,12 @@ if ($_SESSION['mid'] == "") {
             </script>";
             // goto start;
         } else {
-            $query = "insert into tbl_member (sid,mname,phone,wing,flat,image,email,password,member_type,id_approved) values ($sid,'$name','$phone','A',1,'user.jpg','$email',md5('$pass'),'Guard','Approved')";
+            $query = "insert into tbl_member (sid,mname,phone,wing,flat,image,email,password,member_type,is_approved) values ($sid,'$name','$phone','A',1,'user.jpg','$email',md5('$pass'),'Guard','Approved')";
             $insert = mysqli_query($conn, $query);
-            echo "<script type='text/javascript'>
-            toastr.success('Guard Added Successfully.');
-            </script>";
-            header("location:Manage_Guard.php");
+            // echo "<script type='text/javascript'>
+            // toastr.success('Guard Added Successfully.');
+            // </script>";
+            header("location:President_Dashboard.php");
         }
     }
 
@@ -281,3 +282,6 @@ if ($_SESSION['mid'] == "") {
 </body>
 
 </html>
+<?php 
+ob_flush();
+?>

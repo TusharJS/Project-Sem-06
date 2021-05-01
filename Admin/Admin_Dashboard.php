@@ -53,7 +53,7 @@
 					<img src="../Image/user/<?php echo $_SESSION['uimg']; ?>" alt="profile photo" class="circle float-left profile-photo" width="50" height="auto">
 					<div class="username">
 						<h4><?php echo $_SESSION['mname']; ?></h4>
-						<p>President</p>
+						<p>Admin</p>
 					</div>
 				</div>
 			</div>

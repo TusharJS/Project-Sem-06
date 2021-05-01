@@ -110,7 +110,7 @@
         
         if($insert)
         {
-          header("location:Registration.php");
+          header("location:Home.php");
         }
 }
       
@@ -328,7 +328,7 @@ start:
 
       if(inp[6].value.length >=! 8)
       {
-        document.getElementById("passErr").innerHTML = "Password must be 8 character long.";
+        // document.getElementById("passErr").innerHTML = "Password must be 8 character long.";
       }
       
       selectElement = document.querySelector('#society_dropdown'); 
